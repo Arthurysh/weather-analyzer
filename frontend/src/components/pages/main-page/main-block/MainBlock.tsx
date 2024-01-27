@@ -10,7 +10,7 @@ function MainBlock() {
             <Header />
             <MapLocation />
             <Precipitation />
-            <div className={"flex"}>
+            <div className={"flex justify-between gap-[15px]"}>
                 <Temperature />
                 <Wind />
             </div>

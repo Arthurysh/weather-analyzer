@@ -5,7 +5,7 @@ const TOKEN = import.meta.env.VITE_MAPBOX_GL_API;
 
 const MapLocation = () => {
     return (
-        <div className={"h-[40%]"}>
+        <div className={"h-[30%]"}>
             <Map
                 initialViewState={{
                     longitude: -79.4512,
