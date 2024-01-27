@@ -58,7 +58,7 @@ def data_view(request):
     data = collect_data(latitude, longitude, start_date)
     date_range = pd.date_range(start_date, end_date)
     predictions = predict(data, len(date_range))
-    
+
     for date_time, prediction in zip(date_range, predictions):
         response[date_time.date().isoformat()] = {
             "temp": prediction[0],
