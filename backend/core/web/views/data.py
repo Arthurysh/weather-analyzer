@@ -1,9 +1,7 @@
-import requests
-from django.http import HttpRequest, JsonResponse
-from datetime import datetime
 import pandas as pd
+import requests
+from django.http import JsonResponse
 from prophet import Prophet
-
 
 
 def collect_data(latitude, longitude, start_date, end_date):
@@ -24,30 +22,27 @@ def collect_data(latitude, longitude, start_date, end_date):
 
 def predict(daily_data):
     df = pd.DataFrame(daily_data)
-    df['ds'] = pd.to_datetime(df['time'])
-    
+    df["ds"] = pd.to_datetime(df["time"])
 
     def train_and_predict(model_data, column, periods=5):
         model = Prophet()
-        model.fit(model_data.rename(columns={'ds': 'ds', column: 'y'}))
+
+        model.fit(model_data.rename(columns={"ds": "ds", column: "y"}))
         future = model.make_future_dataframe(periods=periods)
         forecast = model.predict(future)
-        
-        return [round(forecast.iloc[-periods + i]['yhat'], 2) for i in range(periods)]
 
+        return [round(forecast.iloc[-periods + i]["yhat"], 2) for i in range(periods)]
 
-    forecast_temp = train_and_predict(df, 'temperature_2m_mean')
-    forecast_precip = train_and_predict(df, 'precipitation_sum')
-    forecast_wind = train_and_predict(df, 'wind_speed_10m_max')
+    forecast_temp = train_and_predict(df, "temperature_2m_mean")
+    forecast_precip = train_and_predict(df, "precipitation_sum")
+    forecast_wind = train_and_predict(df, "wind_speed_10m_max")
 
     forecasts = list(zip(forecast_temp, forecast_precip, forecast_wind))
 
     return forecasts
 
 
-
-
-def data_view(request: HttpRequest):
+def data_view(request):
     latitude = request.GET.get("latitude", None)
     longitude = request.GET.get("longitude", None)
     start_date = request.GET.get("start_date", None)
@@ -60,5 +55,8 @@ def data_view(request: HttpRequest):
 
     data = collect_data(latitude, longitude, start_date, end_date)
 
-    return JsonResponse(response)
+    pr = predict(data)
 
+    print(pr)
+
+    return JsonResponse(response)
