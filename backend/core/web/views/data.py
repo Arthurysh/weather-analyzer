@@ -2,8 +2,8 @@ import requests
 from django.http import HttpRequest, JsonResponse
 from datetime import datetime
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.multioutput import MultiOutputRegressor
+from prophet import Prophet
+
 
 
 def collect_data(latitude, longitude, start_date, end_date):
@@ -24,15 +24,24 @@ def collect_data(latitude, longitude, start_date, end_date):
 
 def predict(daily_data):
     df = pd.DataFrame(daily_data)
-    df['time'] = pd.to_datetime(df['time']).map(pd.Timestamp.toordinal)
+    df['ds'] = pd.to_datetime(df['time'])
+    
 
-    X = df[['time']]
-    y = df[['temperature_2m_mean', 'precipitation_sum', 'wind_speed_10m_max']]
+    def train_and_predict(model_data, column, periods=5):
+        model = Prophet()
+        model.fit(model_data.rename(columns={'ds': 'ds', column: 'y'}))
+        future = model.make_future_dataframe(periods=periods)
+        forecast = model.predict(future)
+        
+        return [round(forecast.iloc[-periods + i]['yhat'], 2) for i in range(periods)]
 
-    model = MultiOutputRegressor(RandomForestRegressor(n_estimators=100))
-    model.fit(X, y)
 
-    forecasts = [model.predict([[X.iloc[-1].item() + day]]) for day in range(1, 6)]
+    forecast_temp = train_and_predict(df, 'temperature_2m_mean')
+    forecast_precip = train_and_predict(df, 'precipitation_sum')
+    forecast_wind = train_and_predict(df, 'wind_speed_10m_max')
+
+    forecasts = list(zip(forecast_temp, forecast_precip, forecast_wind))
+
     return forecasts
 
 
