@@ -20,8 +20,8 @@ def collect_data(latitude, longitude, start_date, end_date):
     return data
 
 
-def predict(daily_data):
-    df = pd.DataFrame(daily_data)
+def predict(data):
+    df = pd.DataFrame(data)
     df["ds"] = pd.to_datetime(df["time"])
 
     def train_and_predict(model_data, column, periods=5):
@@ -54,9 +54,14 @@ def data_view(request):
         return JsonResponse(data=response)
 
     data = collect_data(latitude, longitude, start_date, end_date)
+    predictions = predict(data)
+    date_range = pd.date_range(start_date, end_date)
 
-    pr = predict(data)
-
-    print(pr)
+    for datetime, prediction in zip(date_range, predictions):
+        response[datetime.date().isoformat()] = {
+            "temp": prediction[0],
+            "precip": prediction[1],
+            "wind": prediction[2],
+        }
 
     return JsonResponse(response)
