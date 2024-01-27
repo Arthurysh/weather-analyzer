@@ -1,15 +1,16 @@
 import $api from "@/http";
+import {WeatherRequestParameters} from "@/models/WeatherRequestParameters.ts";
 
 export default class WeatherService {
     static headers = {
         'Content-Type': 'application/json'
     };
 
-    static async getStatistic() {
+    static async getStatistic({latitude, longitude, start_date, end_date}: WeatherRequestParameters) {
         const options = {
             headers: this.headers,
         };
 
-        return await $api.get(`api/data/?latitude=52.52&longitude=13.41&start_date=2023-01-01&end_date=2023-01-31`, options);
+        return await $api.get(`api/data/?latitude=${latitude}&longitude=${longitude}&start_date=${start_date}&end_date=${end_date}`, options);
     }
 }
