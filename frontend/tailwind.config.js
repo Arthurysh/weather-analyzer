@@ -19,8 +19,11 @@ module.exports = {
     extend: {
       backgroundImage: {
         "sidebar": "radial-gradient(53.68% 64.39% at 50% 25.56%, #0E277B 0%, #0C1A47 100%);",
+        "header-mountain-logo": "url('/src/assets/images/header.png')"
       },
       colors: {
+        'main-white-color': "#FAFAFA",
+        'main-page-bg': "#ECEFF8",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
