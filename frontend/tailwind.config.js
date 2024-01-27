@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        "sidebar": "radial-gradient(53.68% 64.39% at 50% 25.56%, #0E277B 0%, #0C1A47 100%);",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
