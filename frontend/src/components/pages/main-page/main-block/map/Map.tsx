@@ -1,14 +1,15 @@
-import Map, {Marker} from 'react-map-gl';
+import Map from 'react-map-gl';
 import GeocoderControl from "@/components/pages/main-page/main-block/map/GeocoderControl.tsx";
 import {useAppSelector} from "@/hooks/redux.ts";
-import {useEffect, useState} from "react";
+import {Skeleton} from "@/components/ui/skeleton.tsx";
 
 const TOKEN = import.meta.env.VITE_MAPBOX_GL_API;
 
 const MapLocation = () => {
+    const weatherForecast = useAppSelector(state => state.statistic.weatherForecast);
     const reqData = useAppSelector(state => state.statistic.requestData);
 
-    return (
+    return weatherForecast ? (
         <div className={"h-[30%]"}>
             <Map
                 initialViewState={{
@@ -22,6 +23,8 @@ const MapLocation = () => {
                 <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" />
             </Map>
         </div>
+    ) : (
+        <Skeleton className={"h-[30%]"} />
     );
 };
 
