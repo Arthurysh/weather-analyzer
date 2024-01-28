@@ -1,7 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {StatisticState} from "@/store/statisticSlice/type.ts";
-import {WeatherRequestParameters} from "@/models/WeatherRequestParameters.ts";
 import {WeatherForecast} from "@/models/WeatherForecast.ts";
+import {DateRangeData} from "@/models/DateRangeData.ts";
+import {MapCoordinate} from "@/models/MapCoordinate.ts";
 
 const initialState: StatisticState = {
     requestData: {
@@ -17,11 +18,19 @@ const slice = createSlice({
     name: 'statistic',
     initialState,
     reducers: {
-        setRequestData(state, action: PayloadAction<WeatherRequestParameters>) {
-            state.requestData = action.payload;
-        },
         setWeatherForecast(state, action: PayloadAction<WeatherForecast>) {
             state.weatherForecast = action.payload;
+        },
+        clearWeatherForecast(state) {
+            state.weatherForecast = null;
+        },
+        setDateRange(state, action: PayloadAction<DateRangeData>) {
+            state.requestData.end_date = action.payload.end_date;
+            state.requestData.start_date = action.payload.start_date;
+        },
+        setMapCoordinate(state, action: PayloadAction<MapCoordinate>) {
+            state.requestData.latitude = action.payload.latitude;
+            state.requestData.longitude = action.payload.longitude;
         }
     }
 })

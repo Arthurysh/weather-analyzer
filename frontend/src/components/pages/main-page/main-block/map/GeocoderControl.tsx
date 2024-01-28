@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 import {useControl, Marker, MarkerProps, ControlPosition} from 'react-map-gl';
 import MapboxGeocoder, {GeocoderOptions} from '@mapbox/mapbox-gl-geocoder';
-import {useAppSelector} from "@/hooks/redux.ts";
+import {useActionCreatorsTyped, useAppSelector} from "@/hooks/redux.ts";
+import {statisticActions} from "@/store/statisticSlice/slice.ts";
 
 type GeocoderControlProps = Omit<GeocoderOptions, 'accessToken' | 'mapboxgl' | 'marker'> & {
     mapboxAccessToken: string;
@@ -17,8 +18,17 @@ type GeocoderControlProps = Omit<GeocoderOptions, 'accessToken' | 'mapboxgl' | '
 
 /* eslint-disable complexity,max-statements */
 export default function GeocoderControl(props: GeocoderControlProps) {
+
+    const navAction = useActionCreatorsTyped(statisticActions);
     const reqData = useAppSelector(state => state.statistic.requestData);
+    
     const [marker, setMarker] = useState<JSX.Element>(null);
+
+    useEffect(() => {
+        if (!marker || !marker.props) return;
+
+        navAction.setMapCoordinate(marker.props);
+    }, [marker]);
 
     useEffect(() => {
         const defaultMarker = <Marker longitude={reqData.longitude} latitude={reqData.latitude} />;

@@ -9,8 +9,9 @@ function App() {
     const weatherAction = useActionCreators(statisticActions);
 
     useEffect(() => {
+        weatherAction.clearWeatherForecast();
         getWeatherStatistic();
-    }, []);
+    }, [reqData]);
 
     async function getWeatherStatistic() {
         try {
