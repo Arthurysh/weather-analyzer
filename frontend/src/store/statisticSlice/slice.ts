@@ -9,9 +9,10 @@ const initialState: StatisticState = {
         latitude: 52.52,
         longitude: 13.41,
         start_date: "2023-01-01",
-        end_date: "2023-01-31"
+        end_date: "2023-01-09"
     },
-    weatherForecast: null
+    weatherForecast: null,
+    weatherActualData: null
 }
 
 const slice = createSlice({
@@ -21,8 +22,12 @@ const slice = createSlice({
         setWeatherForecast(state, action: PayloadAction<WeatherForecast>) {
             state.weatherForecast = action.payload;
         },
-        clearWeatherForecast(state) {
+        clearWeatherData(state) {
             state.weatherForecast = null;
+            state.weatherActualData = null;
+        },
+        setWeatherActualData(state, action: PayloadAction<WeatherForecast>) {
+            state.weatherActualData = action.payload;
         },
         setDateRange(state, action: PayloadAction<DateRangeData>) {
             state.requestData.end_date = action.payload.end_date;
