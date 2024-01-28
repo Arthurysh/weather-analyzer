@@ -1,8 +1,12 @@
 import {Loader2} from "lucide-react";
 
-const Spinner = () => {
+interface PropsSpinner {
+    className?: string;
+}
+
+const Spinner = ({className}: PropsSpinner) => {
     return (
-        <Loader2 className={"animate-spin text-[#064FF0]"}/>
+        <Loader2 className={`animate-spin text-[#064FF0] ${className}`}/>
     );
 };
 

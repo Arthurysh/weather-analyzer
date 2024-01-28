@@ -37,7 +37,7 @@ function WeatherList() {
                         <span className={"w-[100px] text-right"}>{item[1].temp}° C</span>
                     </div>
                 </motion.div>
-            )) : <Spinner />}
+            )) : <Spinner className={"absolute top-[50%] left-[50%] transform-[translate(-50%, -50%)] mr-[-50%]"} />}
         </ScrollArea>
     )
 }
