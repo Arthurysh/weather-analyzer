@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 from decouple import config
@@ -10,7 +11,7 @@ WEB_DIR = PROJECT_DIR / "web"
 
 SECRET_KEY = config("DJANGO_SECRET_KEY")
 
-DEBUG = config("DJANGO_DEBUG", default=False, cast=bool)
+DEBUG = "runserver" in sys.argv
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
