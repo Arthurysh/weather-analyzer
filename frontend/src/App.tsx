@@ -1,32 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/images/react.svg'
+import MainPage from "@/components/pages/main-page/MainPage.tsx";
+import {useEffect} from "react";
+import WeatherService from "@/service/WeatherService.ts";
+import {useActionCreators, useAppSelector} from "@/hooks/redux.ts";
+import {statisticActions} from "@/store/statisticSlice/slice.ts";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const reqData = useAppSelector(state => state.statistic.requestData);
+    const weatherAction = useActionCreators(statisticActions);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        weatherAction.clearWeatherData();
+        getWeatherStatistic();
+    }, [reqData]);
+
+    async function getWeatherStatistic() {
+        try {
+            const response = await WeatherService.getStatistic(reqData);
+            weatherAction.setWeatherForecast(response.data.predicted);
+            if (response.data.actual) weatherAction.setWeatherActualData(response.data.actual);
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    return (
+        <main className={"bg-light-bg dark:bg-dark-bg"}>
+            <MainPage/>
+        </main>
+    )
 }
 
 export default App

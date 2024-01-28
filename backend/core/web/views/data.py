@@ -2,6 +2,7 @@ from datetime import datetime
 
 import pandas as pd
 import requests
+from dateutil.relativedelta import relativedelta
 from django.http import JsonResponse
 from prophet import Prophet
 
@@ -11,7 +12,7 @@ def collect_data(latitude, longitude, end_date):
     params = {
         "latitude": latitude,
         "longitude": longitude,
-        "start_date": f"{datetime.now().year - 10}-01-01",
+        "start_date": (datetime.fromisoformat(end_date) - relativedelta(years=10)).date().isoformat(),
         "end_date": end_date,
         "daily": "temperature_2m_mean,precipitation_sum,wind_speed_10m_max",
     }
@@ -55,15 +56,36 @@ def data_view(request):
     if not latitude or not longitude or not start_date or not end_date:
         return JsonResponse(data=response)
 
-    data = collect_data(latitude, longitude, start_date)
     date_range = pd.date_range(start_date, end_date)
-    predictions = predict(data, len(date_range))
+    num_dates = len(date_range)
 
-    for date_time, prediction in zip(date_range, predictions):
-        response[date_time.date().isoformat()] = {
+    if datetime.fromisoformat(start_date) > datetime.now():
+        data = collect_data(latitude, longitude,  datetime.now().date().isoformat())
+        predictions = predict(data, num_dates)
+    elif datetime.fromisoformat(end_date) + relativedelta(days=2) < datetime.now():
+        data = collect_data(latitude, longitude, end_date)
+        train, test = {k: v[:-num_dates] for k, v in data.items()}, {k: v[-num_dates:] for k, v in data.items()}
+        predictions = predict(train, num_dates)
+
+        response["actual"] = {
+            test["time"][i]: {
+                "temp": test["temperature_2m_mean"][i],
+                "precip": test["precipitation_sum"][i],
+                "wind": test["wind_speed_10m_max"][i],
+            }
+            for i in range(len(test["time"]))
+        }
+    else:
+        data = collect_data(latitude, longitude, start_date)
+        predictions = predict(data, num_dates)
+
+    response["predicted"] = {
+        date_time.date().isoformat(): {
             "temp": prediction[0],
             "precip": prediction[1],
             "wind": prediction[2],
         }
+        for date_time, prediction in zip(date_range, predictions)
+    }
 
     return JsonResponse(response)
