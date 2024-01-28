@@ -13,7 +13,7 @@ const Wind = () => {
                     labels: weatherForecastEntries?.map((data) => data[0]),
                     datasets: [
                         {
-                            label: "Wind",
+                            label: "Forecast",
                             data: weatherForecastEntries?.map((data) => data[1].wind),
                             backgroundColor: "#064FF0",
                             borderColor: "#064FF0",

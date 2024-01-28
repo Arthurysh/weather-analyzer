@@ -21,7 +21,7 @@ const Temperature = () => {
                        labels: weatherForecastEntries?.map((data) => data[0]),
                        datasets: [
                            {
-                               label: "Temperature",
+                               label: "Forecast",
                                data: weatherForecastEntries?.map((data) => data[1].temp),
                                backgroundColor: "#064FF0",
                                borderColor: "#064FF0",

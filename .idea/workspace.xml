@@ -4,16 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dff9f4fe-677f-4045-9eaa-3b368156222b" name="Changes" comment="Change 127.0.0.1 to localhost">
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/map/GeocoderControl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/map/GeocoderControl.tsx" afterDir="false" />
+    <list default="true" id="dff9f4fe-677f-4045-9eaa-3b368156222b" name="Changes" comment="implement animation">
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/images/cloud.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ui/scroll-area.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/MainPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/MainPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/map/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/map/Map.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/precipitation/Precipitation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/precipitation/Precipitation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/temperature/Temperature.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/temperature/Temperature.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/wind/Wind.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/wind/Wind.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/models/WeatherRequestParameters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/models/WeatherRequestParameters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/statisticSlice/slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/statisticSlice/slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/statisticSlice/type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/statisticSlice/type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/sidebar/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/sidebar/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/sidebar/date-range-picker/DateRangePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/sidebar/date-range-picker/DateRangePicker.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/sidebar/weather-list/WeatherList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/sidebar/weather-list/WeatherList.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,20 +46,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "frontend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "G:\\react\\weather-analyzer\\frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;G:\\react\\weather-analyzer\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\react\weather-analyzer\backend" />
@@ -106,6 +112,7 @@
     <MESSAGE value="header and map implemented" />
     <MESSAGE value="diagrams implemented" />
     <MESSAGE value="Change 127.0.0.1 to localhost" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change 127.0.0.1 to localhost" />
+    <MESSAGE value="implement animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement animation" />
   </component>
 </project>

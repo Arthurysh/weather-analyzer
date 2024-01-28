@@ -13,6 +13,7 @@ import {
 import {useActionCreatorsTyped, useAppSelector} from "@/hooks/redux.ts";
 import DateService from "@/service/helper/DateService.ts";
 import {statisticActions} from "@/store/statisticSlice/slice.ts";
+import { motion } from "framer-motion"
 
 function DateRangePicker() {
 
@@ -22,6 +23,16 @@ function DateRangePicker() {
 
     const dateAction = useActionCreatorsTyped(statisticActions);
 
+    const datePickerAnimation = {
+        hidden: {
+            opacity: 0
+        },
+        visible: {
+            opacity: 1,
+            transition: {delay: 0.2, duration: 0.8, linear: [0.67, 0.67, 0.67, 0.67]}
+        }
+    }
+
     const datePickerHandler = (dateRange: DateRange | undefined) => {
         const convertedDateRange = DateService.convertDateToString(dateRange);
         if (!convertedDateRange) return;
@@ -29,7 +40,9 @@ function DateRangePicker() {
     }
 
     return (
-        <div className={"grid gap-2 w-full mb-3"}>
+        <motion.div
+            variants={datePickerAnimation}
+            className={"grid gap-2 w-full mb-3"}>
             <Popover>
                 <PopoverTrigger asChild>
                     <Button
@@ -65,7 +78,7 @@ function DateRangePicker() {
                     />
                 </PopoverContent>
             </Popover>
-        </div>
+        </motion.div>
     )
 }
 

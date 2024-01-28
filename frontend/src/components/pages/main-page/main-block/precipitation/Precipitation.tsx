@@ -13,7 +13,7 @@ const Precipitation = () => {
                     labels: weatherForecastEntries?.map((data) => data[0]),
                     datasets: [
                         {
-                            label: "Precipitation",
+                            label: "Forecast",
                             data: weatherForecastEntries?.map((data) => data[1].precip),
                             backgroundColor: "#064FF0",
                             borderColor: "#064FF0",
