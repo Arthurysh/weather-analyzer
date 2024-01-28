@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dff9f4fe-677f-4045-9eaa-3b368156222b" name="Changes" comment="Change 127.0.0.1 to localhost">
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/map/GeocoderControl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/map/GeocoderControl.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/map/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/map/Map.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/precipitation/Precipitation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/precipitation/Precipitation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/temperature/Temperature.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/temperature/Temperature.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/wind/Wind.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/main-page/main-block/wind/Wind.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/models/WeatherRequestParameters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/models/WeatherRequestParameters.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/statisticSlice/slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/statisticSlice/slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/statisticSlice/type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/statisticSlice/type.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2bXk6YDhry15hNNpHslWMPKCsnK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "frontend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "G:\\react\\weather-analyzer\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\react\weather-analyzer\backend" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dff9f4fe-677f-4045-9eaa-3b368156222b" name="Changes" comment="" />
+      <created>1706368637005</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706368637005</updated>
+      <workItem from="1706368638582" duration="15251000" />
+      <workItem from="1706389327675" duration="3898000" />
+      <workItem from="1706397835213" duration="412000" />
+      <workItem from="1706398260233" duration="5807000" />
+    </task>
+    <task id="LOCAL-00001" summary="header and map implemented">
+      <option name="closed" value="true" />
+      <created>1706386357212</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706386357212</updated>
+    </task>
+    <task id="LOCAL-00002" summary="diagrams implemented">
+      <option name="closed" value="true" />
+      <created>1706391329535</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706391329535</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Change 127.0.0.1 to localhost">
+      <option name="closed" value="true" />
+      <created>1706400579797</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706400579797</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="header and map implemented" />
+    <MESSAGE value="diagrams implemented" />
+    <MESSAGE value="Change 127.0.0.1 to localhost" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change 127.0.0.1 to localhost" />
+  </component>
+</project>

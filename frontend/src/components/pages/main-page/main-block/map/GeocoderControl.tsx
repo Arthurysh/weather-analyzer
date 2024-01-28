@@ -1,6 +1,7 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useControl, Marker, MarkerProps, ControlPosition} from 'react-map-gl';
 import MapboxGeocoder, {GeocoderOptions} from '@mapbox/mapbox-gl-geocoder';
+import {useAppSelector} from "@/hooks/redux.ts";
 
 type GeocoderControlProps = Omit<GeocoderOptions, 'accessToken' | 'mapboxgl' | 'marker'> & {
     mapboxAccessToken: string;
@@ -16,7 +17,13 @@ type GeocoderControlProps = Omit<GeocoderOptions, 'accessToken' | 'mapboxgl' | '
 
 /* eslint-disable complexity,max-statements */
 export default function GeocoderControl(props: GeocoderControlProps) {
-    const [marker, setMarker] = useState(null);
+    const reqData = useAppSelector(state => state.statistic.requestData);
+    const [marker, setMarker] = useState<JSX.Element>(null);
+
+    useEffect(() => {
+        const defaultMarker = <Marker longitude={reqData.longitude} latitude={reqData.latitude} />;
+        setMarker(defaultMarker);
+    }, []);
 
     const geocoder = useControl<MapboxGeocoder>(
         () => {
@@ -25,9 +32,11 @@ export default function GeocoderControl(props: GeocoderControlProps) {
                 marker: false,
                 accessToken: props.mapboxAccessToken
             });
-            // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             ctrl.on('loading', props.onLoading);
-            // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             ctrl.on('results', props.onResults);
             ctrl.on('result', evt => {
                 // @ts-ignore
