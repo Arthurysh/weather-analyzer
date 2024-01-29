@@ -30,7 +30,7 @@ function Header() {
             time >= 6 && time < 12 ? "morning" :
                 time >= 12 && time < 17 ? "day" :
                     time >= 17 && time < 22 ? "evening" :
-                        "Night";
+                        "night";
         setDayType(dayType);
     }
 
