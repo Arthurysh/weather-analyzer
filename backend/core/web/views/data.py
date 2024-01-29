@@ -6,7 +6,10 @@ from dateutil.relativedelta import relativedelta
 from django.http import HttpResponseBadRequest, JsonResponse
 from prophet import Prophet
 
+from core.web.cache import cache_data, cache_predict
 
+
+@cache_data
 def collect_data(latitude, longitude, start_date, end_date, historical):
     if historical:
         url = "https://archive-api.open-meteo.com/v1/archive"
@@ -38,6 +41,7 @@ def collect_data(latitude, longitude, start_date, end_date, historical):
     return data
 
 
+@cache_predict
 def predict(data, days):
     df = pd.DataFrame(data)
     df["ds"] = pd.to_datetime(df["time"])
