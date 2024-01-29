@@ -1,17 +1,21 @@
-import pickle
 import os
+import pickle
+
 from django.test import TestCase
+
 from core.web.views.data import predict
 
 
 class TestPredict(TestCase):
+
     @classmethod
     def setUpTestData(cls):
         _current_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(_current_dir, 'api_data.pkl')
-        with open(file_path, 'rb') as f:
+        file_path = os.path.join(_current_dir, "api_data.pkl")
+
+        with open(file_path, "rb") as f:
             cls.api_result = pickle.load(f)
-        
+
         cls.dummy_result = {
             "daily": {
                 "time": ["2023-01-01", "2023-01-02"],
@@ -21,10 +25,9 @@ class TestPredict(TestCase):
             }
         }
         cls.days_to_predict = len(cls.dummy_result["daily"].get("time"))
-    
+
     def setUp(self):
         self.result = predict(self.api_result, self.days_to_predict)
-
 
     def test_predict_output_format(self):
         self.assertIsInstance(self.result, list)
@@ -38,7 +41,7 @@ class TestPredict(TestCase):
             self.assertIsInstance(forecast[0], float)
             self.assertIsInstance(forecast[1], float)
             self.assertIsInstance(forecast[2], float)
-    
+
     def test_predict_elements_is_correct(self):
         self.assertEqual(self.result[0][0], self.dummy_result["daily"].get("temperature_2m_mean")[0])
         self.assertEqual(self.result[1][0], self.dummy_result["daily"].get("temperature_2m_mean")[1])
