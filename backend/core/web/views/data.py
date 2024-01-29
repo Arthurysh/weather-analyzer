@@ -95,6 +95,13 @@ def data_view(request):
             end_date=end_date,
             historical=True,
         )
+    elif datetime.fromisoformat(start_date) - relativedelta(days=7) > datetime.now():
+        actual_data = {
+            "time": [],
+            "temperature_2m_mean": [],
+            "precipitation_sum": [],
+            "wind_speed_10m_max": [],
+        }
     elif datetime.fromisoformat(start_date) + relativedelta(days=2) >= datetime.now():
         actual_data = collect_data(
             latitude=latitude,
