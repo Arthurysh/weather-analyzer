@@ -75,12 +75,6 @@ def data_view(request):
     if datetime.fromisoformat(start_date) > datetime.fromisoformat(end_date):
         return HttpResponseBadRequest(content="Invalid dates")
 
-    if datetime.fromisoformat(end_date) - relativedelta(days=7) > datetime.now():
-        return HttpResponseBadRequest(content="Invalid start date")
-
-    if datetime.fromisoformat(end_date) - relativedelta(days=7) > datetime.now():
-        return HttpResponseBadRequest(content="Invalid end date")
-
     date_range = pd.date_range(start_date, end_date)
     num_dates = len(date_range)
 
@@ -106,7 +100,7 @@ def data_view(request):
             latitude=latitude,
             longitude=longitude,
             start_date=start_date,
-            end_date=end_date,
+            end_date=min(datetime.fromisoformat(end_date), datetime.now() + relativedelta(days=7)).date().isoformat(),
             historical=False,
         )
     else:
@@ -121,7 +115,7 @@ def data_view(request):
             latitude=latitude,
             longitude=longitude,
             start_date=(datetime.now() - relativedelta(days=1)).date().isoformat(),
-            end_date=end_date,
+            end_date=min(datetime.fromisoformat(end_date), datetime.now() + relativedelta(days=7)).date().isoformat(),
             historical=False,
         )
         actual_data = {
