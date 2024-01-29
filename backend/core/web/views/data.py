@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 
 import pandas as pd
@@ -73,7 +74,7 @@ def data_view(request):
     if not latitude or not longitude or not start_date or not end_date:
         return HttpResponseBadRequest(content="Missing parameters")
 
-    if not latitude.replace(".", "").isdigit() or not longitude.replace(".", "").isdigit():
+    if not re.match(r"^-?\d+(\.\d+)?$", latitude) or not re.match(r"^-?\d+(\.\d+)?$", longitude):
         return HttpResponseBadRequest(content="Latitude and longitude should be numbers")
 
     if datetime.fromisoformat(start_date) > datetime.fromisoformat(end_date):
