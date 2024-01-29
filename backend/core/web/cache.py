@@ -1,5 +1,5 @@
 import json
-from functools import cache, lru_cache, wraps
+from functools import lru_cache, wraps
 
 
 def cache_predict(func):
@@ -31,13 +31,17 @@ def cache_predict(func):
 
 
 def cache_data(func):
+    cache = lru_cache(maxsize=None)
+
+    cached_function = cache(func)
 
     @wraps(func)
-    def wrapper(*args, **kwargs):
-        if kwargs.get("historical"):
-            return cached_func(*args, **kwargs)
+    def lru_decorator(*args, **kwargs):
+        if args[-1]:
+            return cached_function(*args, **kwargs)
         return func(*args, **kwargs)
 
-    cached_func = cache(func)
+    lru_decorator.cache_info = cached_function.cache_info
+    lru_decorator.cache_clear = cached_function.cache_clear
 
-    return wrapper
+    return lru_decorator
