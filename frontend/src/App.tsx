@@ -10,7 +10,9 @@ function App() {
 
     useEffect(() => {
         weatherAction.clearWeatherData();
-        getWeatherStatistic();
+        if (reqData.end_date) {
+            getWeatherStatistic();
+        }
     }, [reqData]);
 
     async function getWeatherStatistic() {

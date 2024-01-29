@@ -1,7 +1,10 @@
 import {useAppSelector} from "@/hooks/redux.ts";
 import moment from "moment";
 import Spinner from "@/components/common/spinner/Spinner.tsx";
-import cloudImage from "@/assets/images/cloud.svg"
+import snowyImage from "@/assets/images/snowy.svg"
+import sunnyImage from "@/assets/images/sunny.svg"
+import rainyImage from "@/assets/images/rainy.svg"
+import windyImage from "@/assets/images/windy.svg"
 import { motion } from "framer-motion"
 import {ScrollArea} from "@/components/ui/scroll-area.tsx";
 
@@ -29,7 +32,10 @@ function WeatherList() {
                     variants={forecastXAnimation}
                     key={index} className={"py-4 text-main-white-color flex justify-between border-b border-color-border last:border-transparent"}>
                     <div className={"text-[18px] flex items-center gap-[15px]"}>
-                        <img src={cloudImage} alt="cloud image" className={"max-h-[40px] max-w-[40px]"}/>
+                        {item[1].precip < 3.25 && item[1].wind < 22 && (<img src={sunnyImage} alt="sunny" className={"max-h-[40px] max-w-[40px]"}/>)}
+                        {item[1].precip >= 3.25 && item[1].temp < 0 && item[1].wind < 22 && (<img src={snowyImage} alt="snowy" className={"max-h-[40px] max-w-[40px]"}/>)}
+                        {item[1].precip >= 3.25 && item[1].temp >= 0 && item[1].wind < 22 && (<img src={rainyImage} alt="rainy" className={"max-h-[40px] max-w-[40px]"}/>)}
+                        {item[1].wind >= 22 && (<img src={windyImage} alt="windy" className={"max-h-[40px] max-w-[40px]"}/>)}
                         {moment(item[0]).format('dddd, MMMM D')}
                     </div>
                     <div className={"text-[20px] flex"}>

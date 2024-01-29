@@ -24,6 +24,8 @@ export default function GeocoderControl(props: GeocoderControlProps) {
     
     const [marker, setMarker] = useState<JSX.Element>(null);
 
+    console.log(marker)
+
     useEffect(() => {
         if (!marker || !marker.props) return;
 

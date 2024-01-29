@@ -39,6 +39,16 @@ function DateRangePicker() {
         }
     }
 
+    const dateStateHandler = (changedDate: DateRange | undefined) => {
+        if (changedDate?.from !== date?.from) {
+            return setDate({
+                from: changedDate?.from,
+                to: undefined
+            })
+        }
+        setDate(changedDate);
+    }
+
     const datePickerHandler = (dateRange: DateRange | undefined) => {
         const convertedDateRange = DateService.convertDateToString(dateRange);
         if (!convertedDateRange) return;
@@ -81,7 +91,7 @@ function DateRangePicker() {
                         mode="range"
                         defaultMonth={date?.from}
                         selected={date}
-                        onSelect={setDate}
+                        onSelect={(date) => dateStateHandler(date)}
                         numberOfMonths={2}
                     />
                 </PopoverContent>
