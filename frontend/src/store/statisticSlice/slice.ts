@@ -3,13 +3,14 @@ import {StatisticState} from "@/store/statisticSlice/type.ts";
 import {WeatherForecast} from "@/models/WeatherForecast.ts";
 import {DateRangeData} from "@/models/DateRangeData.ts";
 import {MapCoordinate} from "@/models/MapCoordinate.ts";
+import moment from "moment";
 
 const initialState: StatisticState = {
     requestData: {
-        latitude: 52.52,
-        longitude: 13.41,
-        start_date: "2023-01-01",
-        end_date: "2023-01-09"
+        latitude: 49.99,
+        longitude: 36.23,
+        start_date: moment().format("YYYY-MM-DD"),
+        end_date: moment().format("YYYY-MM-DD")
     },
     weatherForecast: null,
     weatherActualData: null
