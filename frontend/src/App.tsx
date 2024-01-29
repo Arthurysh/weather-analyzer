@@ -9,14 +9,17 @@ function App() {
     const weatherAction = useActionCreators(statisticActions);
 
     useEffect(() => {
-        weatherAction.clearWeatherForecast();
-        getWeatherStatistic();
+        weatherAction.clearWeatherData();
+        if (reqData.end_date) {
+            getWeatherStatistic();
+        }
     }, [reqData]);
 
     async function getWeatherStatistic() {
         try {
             const response = await WeatherService.getStatistic(reqData);
-            weatherAction.setWeatherForecast(response.data);
+            weatherAction.setWeatherForecast(response.data.predicted);
+            if (response.data.actual) weatherAction.setWeatherActualData(response.data.actual);
         } catch (e) {
             console.log(e)
         }

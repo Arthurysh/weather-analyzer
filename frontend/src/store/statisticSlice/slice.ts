@@ -3,15 +3,17 @@ import {StatisticState} from "@/store/statisticSlice/type.ts";
 import {WeatherForecast} from "@/models/WeatherForecast.ts";
 import {DateRangeData} from "@/models/DateRangeData.ts";
 import {MapCoordinate} from "@/models/MapCoordinate.ts";
+import moment from "moment";
 
 const initialState: StatisticState = {
     requestData: {
-        latitude: 52.52,
-        longitude: 13.41,
-        start_date: "2023-01-01",
-        end_date: "2023-01-31"
+        latitude: 49.99,
+        longitude: 36.23,
+        start_date: moment().format("YYYY-MM-DD"),
+        end_date: moment().format("YYYY-MM-DD")
     },
-    weatherForecast: null
+    weatherForecast: null,
+    weatherActualData: null
 }
 
 const slice = createSlice({
@@ -21,8 +23,12 @@ const slice = createSlice({
         setWeatherForecast(state, action: PayloadAction<WeatherForecast>) {
             state.weatherForecast = action.payload;
         },
-        clearWeatherForecast(state) {
+        clearWeatherData(state) {
             state.weatherForecast = null;
+            state.weatherActualData = null;
+        },
+        setWeatherActualData(state, action: PayloadAction<WeatherForecast>) {
+            state.weatherActualData = action.payload;
         },
         setDateRange(state, action: PayloadAction<DateRangeData>) {
             state.requestData.end_date = action.payload.end_date;

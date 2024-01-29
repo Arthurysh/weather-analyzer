@@ -5,21 +5,27 @@ import {DateRange} from "react-day-picker"
 import {cn} from "@/lib/utils"
 import {Button} from "@/components/ui/button"
 import {Calendar} from "@/components/ui/calendar"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
+import {Popover, PopoverContent, PopoverTrigger,} from "@/components/ui/popover"
 import {useActionCreatorsTyped, useAppSelector} from "@/hooks/redux.ts";
 import DateService from "@/service/helper/DateService.ts";
 import {statisticActions} from "@/store/statisticSlice/slice.ts";
-import { motion } from "framer-motion"
+import {motion} from "framer-motion"
+import {useEffect, useState} from "react";
 
 function DateRangePicker() {
+    const weatherForecast = useAppSelector(state => state.statistic.weatherForecast);
 
     const from = useAppSelector((state) => state.statistic.requestData.start_date);
     const to = useAppSelector((state) => state.statistic.requestData.end_date);
-    const weatherForecast = useAppSelector(state => state.statistic.weatherForecast);
+
+    const [date, setDate] = useState<DateRange | undefined>({
+        from: new Date(from),
+        to: new Date(to),
+    })
+
+    useEffect(() => {
+        datePickerHandler(date);
+    }, [date]);
 
     const dateAction = useActionCreatorsTyped(statisticActions);
 
@@ -33,6 +39,16 @@ function DateRangePicker() {
         }
     }
 
+    const dateStateHandler = (changedDate: DateRange | undefined) => {
+        if (changedDate?.from !== date?.from) {
+            return setDate({
+                from: changedDate?.from,
+                to: undefined
+            })
+        }
+        setDate(changedDate);
+    }
+
     const datePickerHandler = (dateRange: DateRange | undefined) => {
         const convertedDateRange = DateService.convertDateToString(dateRange);
         if (!convertedDateRange) return;
@@ -42,25 +58,27 @@ function DateRangePicker() {
     return (
         <motion.div
             variants={datePickerAnimation}
-            className={"grid gap-2 w-full mb-3"}>
+            className={cn("grid gap-2 w-full mb-3")}>
             <Popover>
                 <PopoverTrigger asChild>
                     <Button
                         id="date"
+                        variant={"outline"}
                         className={cn(
                             "w-[300px] justify-center text-left font-normal mx-auto",
-                            (!from || !to) && "text-muted-foreground", !weatherForecast && "cursor-not-allowed"
+                            !date && "text-muted-foreground"
                         )}
+                        disabled={!weatherForecast}
                     >
                         <CalendarIcon className="mr-2 h-4 w-4"/>
-                        {from ? (
-                            to ? (
+                        {date?.from ? (
+                            date.to ? (
                                 <>
-                                    {format(from, "LLL dd, y")} -{" "}
-                                    {format(to, "LLL dd, y")}
+                                    {format(date.from, "LLL dd, y")} -{" "}
+                                    {format(date.to, "LLL dd, y")}
                                 </>
                             ) : (
-                                format(from, "LLL dd, y")
+                                format(date.from, "LLL dd, y")
                             )
                         ) : (
                             <span>Pick a date</span>
@@ -71,9 +89,9 @@ function DateRangePicker() {
                     <Calendar
                         initialFocus
                         mode="range"
-                        defaultMonth={new Date(from)}
-                        selected={{from: new Date(from), to: new Date(to)}}
-                        onSelect={datePickerHandler}
+                        defaultMonth={date?.from}
+                        selected={date}
+                        onSelect={(date) => dateStateHandler(date)}
                         numberOfMonths={2}
                     />
                 </PopoverContent>

@@ -4,4 +4,5 @@ import {WeatherForecast} from "@/models/WeatherForecast.ts";
 export interface StatisticState {
     requestData: WeatherRequestParameters;
     weatherForecast: WeatherForecast | null;
+    weatherActualData: WeatherForecast | null;
 }
