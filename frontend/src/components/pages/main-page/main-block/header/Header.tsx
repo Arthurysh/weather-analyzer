@@ -26,7 +26,7 @@ function Header() {
     }, []);
 
     function dayTimeHandler(time: number) {
-        const dayType =
+        const dayType: string =
             time >= 6 && time < 12 ? "morning" :
                 time >= 12 && time < 17 ? "day" :
                     time >= 17 && time < 22 ? "evening" :
@@ -37,6 +37,7 @@ function Header() {
     return (
         <motion.header
             variants={headerBlockAnimation}
+            data-testid="header"
             className={"bg-header-mountain-logo bg-cover bg-center bg-no-repeat w-full rounded-[10px] relative"}>
             <div
                 className={"flex justify-between bg-[#0C1A47] opacity-[80%] w-full h-full rounded-[10px] items-center px-[20px] py-[10px] text-main-white-color text-[30px] font-semibold"}>
