@@ -37,7 +37,7 @@ def cache_data(func):
 
     @wraps(func)
     def lru_decorator(*args, **kwargs):
-        if args[-1]:
+        if kwargs.get("historical"):
             return cached_function(*args, **kwargs)
         return func(*args, **kwargs)
 
