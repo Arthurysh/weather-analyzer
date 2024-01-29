@@ -77,6 +77,9 @@ def data_view(request):
     if not re.match(r"^-?\d+(\.\d+)?$", latitude) or not re.match(r"^-?\d+(\.\d+)?$", longitude):
         return HttpResponseBadRequest(content="Latitude and longitude should be numbers")
 
+    if not re.match(r"\d{4}-\d{2}-\d{2}", start_date) or not re.match(r"\d{4}-\d{2}-\d{2}", end_date):
+        return HttpResponseBadRequest(content="Invalid date format")
+
     if datetime.fromisoformat(start_date) > datetime.fromisoformat(end_date):
         return HttpResponseBadRequest(content="Invalid dates")
 
